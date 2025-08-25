@@ -120,11 +120,11 @@
     productList.appendChild(card);
   });
     function getTotalQuantity() {
-    let total = 0;
-    cart.forEach(item => {
-        total += item.quantity;
-    });
-    return total;
+      let total = 0;
+      cart.forEach(item => {
+          total += item.quantity;
+      });
+      return total;
     }
 
   function addToCart(productId) {
@@ -224,7 +224,7 @@
       div.innerHTML=`no such item in your cart！`;
       searchResult.appendChild(div);
     }
-}
+  }
    
 
 
