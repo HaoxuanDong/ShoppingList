@@ -78,6 +78,9 @@
       font-weight:bold;
       margin-top:10px;
     }
+    .searchResult{
+      display: none;
+    }
     
   </style>
 </head>
@@ -88,6 +91,9 @@
 
 <div class="cart">
   <button class="btn" onclick="toggleCart()">🛒 Your Cart</button>
+  <input type="text" id="searchInput" placeholder="输入商品名或ID查询">
+  <button class="btn"onclick="searchCart()">Search your Cart</button>
+  <div id="searchResult"></div>
   <div class="cart-items" id="cartItems"></div>
   <div id="cartMessage" ></div>
 </div>
@@ -191,6 +197,36 @@
       document.getElementById("cartMessage").textContent = "";
     }
   }
+  function searchCart() {
+    const searchResult = document.getElementById("searchResult");
+    searchResult.innerHTML="";
+    const div = document.createElement("div");
+    div.className = "show-result";
+    div.innerHTML="";
+    const keyword = document.getElementById("searchInput").value.trim();
+    if (!keyword) {
+    console.log(`please enter items name or ID!`)
+    div.innerHTML=`please enter items name or ID!`;
+      searchResult.appendChild(div);
+      return;
+    }
+
+    const foundItem = cart.find(item => 
+      item.name.includes(keyword) || item.id.toString() === keyword
+    );
+
+    if (foundItem) {
+      console.log(`found item：${foundItem.name}, quantity：${foundItem.quantity}, Single price：￥${foundItem.price}`);
+      div.innerHTML=`found item：${foundItem.name}, quantity：${foundItem.quantity}, Single price：￥${foundItem.price}`
+      searchResult.appendChild(div);
+    } else {
+      console.log("no such item in your cart！");
+      div.innerHTML=`no such item in your cart！`;
+      searchResult.appendChild(div);
+    }
+}
+   
+
 
   function toggleCart() {
     const cartItems = document.getElementById("cartItems");
