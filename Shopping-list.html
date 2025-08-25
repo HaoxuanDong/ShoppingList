@@ -216,8 +216,8 @@
     );
 
     if (foundItem) {
-      console.log(`found item：${foundItem.name}, quantity：${foundItem.quantity}, Single price：￥${foundItem.price}`);
-      div.innerHTML=`found item：${foundItem.name}, quantity：${foundItem.quantity}, Single price：￥${foundItem.price}`
+      console.log(`found item：${foundItem.name}, quantity：${foundItem.quantity},  price：￥${foundItem.price * foundItem.quantity}`);
+      div.innerHTML=`found item：${foundItem.name}, quantity：${foundItem.quantity},  price：￥${foundItem.price * foundItem.quantity}`
       searchResult.appendChild(div);
     } else {
       console.log("no such item in your cart！");
